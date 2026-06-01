@@ -1,12 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
 
-  let messages: Array<{
-    id: string;
-    username: string;
-    text: string;
-    timestamp: number;
-  }> = $state([]);
+  let messages: Array<App.ChatMessage> = $state([]);
   let username: string = $state("");
   let text: string = $state("");
   let loading: boolean = $state(true);
@@ -55,7 +50,9 @@
     class="mb-4 w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
   />
 
-  <div class="messages mb-4 flex-1 space-y-3 overflow-y-auto rounded-lg bg-white p-4 shadow-sm">
+  <div
+    class="messages mb-4 flex-1 space-y-3 overflow-y-auto rounded-lg bg-white p-4 shadow-sm"
+  >
     {#if loading}
       <p class="text-center text-gray-400">Loading...</p>
     {:else if messages.length === 0}
